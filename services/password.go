@@ -1,16 +1,17 @@
 package services
 
 import (
-	"log"
-
 	"golang.org/x/crypto/bcrypt"
 )
 
-// hashPassword generates bcrypt hash
+// HashPassword returns a bcrypt hashed password
 func HashPassword(password string) string {
-	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	if err != nil {
-		log.Fatalf("Failed to hash password: %v", err)
-	}
-	return string(hashed)
+	bytes, _ := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes)
+}
+
+// CheckPasswordHash compares raw password with hashed password
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }

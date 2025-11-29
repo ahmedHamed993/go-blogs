@@ -3,6 +3,7 @@ package seeders
 import (
 	"github/ahmedhamed993/go-auth/models"
 	"github/ahmedhamed993/go-auth/services"
+
 	"log"
 
 	"gorm.io/gorm"

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github/ahmedhamed993/go-auth/models"
 	"github/ahmedhamed993/go-auth/seeders"
+
 	"log"
 
 	"gorm.io/driver/postgres"
