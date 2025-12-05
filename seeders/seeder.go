@@ -2,7 +2,7 @@ package seeders
 
 import (
 	"github/ahmedhamed993/go-auth/models"
-	"github/ahmedhamed993/go-auth/services"
+	"github/ahmedhamed993/go-auth/utils"
 
 	"log"
 
@@ -51,19 +51,19 @@ func SeedDefaultUsers(db *gorm.DB) {
 	var users = []models.User{
 		{
 			Username:   "superadmin",
-			Password:   services.HashPassword("superadmin123"),
+			Password:   utils.HashPassword("superadmin123"),
 			RoleID:     roleMap["superadmin"].ID,
 			IsVerified: true,
 		},
 		{
 			Username:   "admin",
-			Password:   services.HashPassword("admin123"),
+			Password:   utils.HashPassword("admin123"),
 			RoleID:     roleMap["admin"].ID,
 			IsVerified: true,
 		},
 		{
 			Username:   "user",
-			Password:   services.HashPassword("user123"),
+			Password:   utils.HashPassword("user123"),
 			RoleID:     roleMap["user"].ID,
 			IsVerified: true,
 		},

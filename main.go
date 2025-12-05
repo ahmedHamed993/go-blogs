@@ -21,7 +21,6 @@ func main() {
 
 	database.Connect()
 
-	routes.UserRoutes(v1)
 	routes.AuthRoutes(v1)
 
 	v1.GET("/", func(c *gin.Context) {

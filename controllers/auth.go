@@ -3,7 +3,7 @@ package controllers
 import (
 	"github/ahmedhamed993/go-auth/database"
 	"github/ahmedhamed993/go-auth/models"
-	"github/ahmedhamed993/go-auth/services"
+	"github/ahmedhamed993/go-auth/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -22,7 +22,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	hashedPassword := services.HashPassword(input.Password)
+	hashedPassword := utils.HashPassword(input.Password)
 
 	user := models.User{
 		Username:   input.Username,
@@ -61,12 +61,12 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	if !services.CheckPasswordHash(input.Password, user.Password) {
+	if !utils.CheckPasswordHash(input.Password, user.Password) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid username or password"})
 		return
 	}
 
-	token, err := services.GenerateToken(user.ID, user.RoleID)
+	token, err := utils.GenerateToken(user.ID, user.RoleID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not generate token"})
 		return

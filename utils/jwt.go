@@ -1,4 +1,4 @@
-package services
+package utils
 
 import (
 	"time"
@@ -19,3 +19,4 @@ func GenerateToken(userId uint, roleId uint) (string, error) {
 
 	return token.SignedString(SecretKey)
 }
+

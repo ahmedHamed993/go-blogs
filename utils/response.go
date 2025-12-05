@@ -1,4 +1,4 @@
-package services
+package utils
 
 import "github.com/gin-gonic/gin"
 
@@ -43,3 +43,4 @@ func PaginatedResponse(c *gin.Context, data interface{}, meta Meta) {
 		"meta":    meta,
 	})
 }
+
