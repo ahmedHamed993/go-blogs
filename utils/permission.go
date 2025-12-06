@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"github/ahmedhamed993/go-auth/models"
+
 	"gorm.io/gorm"
 )
 
@@ -23,3 +25,22 @@ func LoadUserPermissions(db *gorm.DB, roleID uint) ([]string, error) {
 	return permissionNames, nil
 }
 
+func GetRolePermissions(db *gorm.DB, roleID uint) ([]string, error) {
+	var role models.Role
+
+	err := db.
+		Preload("Permissions").
+		First(&role, roleID).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	// Convert to string slice
+	perms := make([]string, 0)
+	for _, p := range role.Permissions {
+		perms = append(perms, p.Name)
+	}
+
+	return perms, nil
+}

@@ -5,4 +5,5 @@ const (
 	ContextKeyUserID      = "user_id"
 	ContextKeyRoleID      = "role_id"
 	ContextKeyPermissions = "permissions"
+	ContextKeyScope       = "scope"
 )
